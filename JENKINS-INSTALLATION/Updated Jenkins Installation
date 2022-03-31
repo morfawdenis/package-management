@@ -1,0 +1,20 @@
+#This Script will Install Jenkins on RedHat
+#Author: Denis
+cd /opt
+sudo yum install wget git unzip -y
+# Add required dependencies for the jenkins package
+sudo yum install java-11-openjdk
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+sudo yum upgrade
+sudo yum install jenkins
+sudo systemctl daemon-reload
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+#If everything has been set up correctly, you should see an output like this:
+
+#Loaded: loaded (/lib/systemd/system/jenkins.service; enabled; vendor preset: enabled)
+#Active: active (running) since Tue 2018-11-13 16:19:01 +03; 4min 57s ago
+...
